@@ -1,0 +1,1 @@
+Misc stuff about Solr and Lucene.
