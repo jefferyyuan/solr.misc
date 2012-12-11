@@ -20,14 +20,13 @@ import org.apache.solr.update.AddUpdateCommand;
 import org.apache.solr.update.processor.UpdateRequestProcessor;
 import org.apache.solr.update.processor.UpdateRequestProcessorFactory;
 
-/**
- * Pass the command to the UpdateHandler without any modifications
- * 
- * @since solr 1.3
- */
 public class DateRoundProcessorFactory extends UpdateRequestProcessorFactory {
 
 	private List<String> dateFields;
+	/**
+	 * Each value can be predefined format, such as day, second, or it can be a
+	 * format string, such as yyyy-MM-dd'T'hh:00:00.0'Z'
+	 */
 	private List<String> dateRoundFields;
 	// ignoreError
 	private boolean ignoreError;
@@ -100,6 +99,10 @@ public class DateRoundProcessorFactory extends UpdateRequestProcessorFactory {
 								df = new SimpleDateFormat(FORMAT_DAY);
 							} else if (ROUND_SECOND.equalsIgnoreCase(roundTo)) {
 								df = new SimpleDateFormat(FORMAT_SECOND);
+							} else {
+								// roundTo can also be format such as
+								// yyyy-MM-dd'T'hh:00:00.0'Z'
+								df = new SimpleDateFormat(roundTo);
 							}
 							if (df != null) {
 								result = df.format(solrDate);
