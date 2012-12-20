@@ -77,10 +77,8 @@ public class RoundDateField extends TrieDateField {
 	      }
 	      
 	      millseconds = (millseconds / MS_IN_DAY) * MS_IN_DAY + (MS_IN_DAY / 2);
-	      
-	      value = new Date(millseconds);
-	      
 	      // returned value must be a date time string
+	      value = new Date(millseconds);
 	    } catch (Exception ex) {
 	      throw new RuntimeException(ex);
 	    }
